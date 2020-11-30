@@ -4,4 +4,4 @@ Snippets of code to reuse and save time.
 
 ## Topics:
 
-- Machine Learning
+- Machine Learning with python
