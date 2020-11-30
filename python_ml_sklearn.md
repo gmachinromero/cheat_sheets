@@ -1,7 +1,7 @@
 # Machine Learning with Python
 ___
 
-# 1. Training and Testing Data, Cross validation and hiper parameter tuning
+# 1. Training and testing split, cross validation and hiper-parameter tuning
 
 ## 1.1. Training and Testing Data
 
@@ -14,8 +14,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 Main parameters:
 
-- cv: determines the cross-validation splitting strategy (default value = 5). Literacy recommends between 5-10.
-- scoring: scoring metric
+- *cv*: determines the cross-validation splitting strategy (default value = 5). Literacy recommends between 5-10.
+- *scoring*: scoring metric
 
 ```Python
 from sklearn.model_selection import cross_val_score
@@ -42,7 +42,7 @@ lm.summary()
 sales_pred = lm.predict(testing)
 ```
 
-### 2.1.2. Linear Regression - sklearn
+### 2.1.2. Linear Regression - scikitlearn
 
 ```Python
 # Load the library
@@ -67,7 +67,7 @@ plt.plot(x_hip, y_hip, c='red');
 
 Main parameters:
 
-- Number of neighbors $k$
+- *n_neighbors*: number of neighbors k
 
 ```Python
 from sklearn.neighbors import KNeighborsRegressor
@@ -86,9 +86,9 @@ plt.plot(x_hip, y_hip, c='red');
 
 Main parameters:
 
-- max_depth: number of splits
-- min_samples_leaf: minimum number of observations per leaf. 
-- min_samples_split: minimum number of observatons per leaf to subdivide. (Value 2 by default, be careful with overfitting.)
+- *max_depth*: number of splits
+- *min_samples_leaf*: minimum number of observations per leaf. 
+- *min_samples_split*: minimum number of observatons per leaf to subdivide. (Value 2 by default, be careful with overfitting.)
 
 ```Python
 from sklearn.tree import DecisionTreeRegressor
