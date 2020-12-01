@@ -6,6 +6,10 @@ ___
 ## 1.1. Training and Testing Data
 
 ```Python
+# Data preparation
+X # pandas DataFrame (multiple columns)
+y # pandas Series (one column)
+# Train test split
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=0)
 ```
@@ -104,6 +108,62 @@ plt.plot(x_hip, y_hip, c='red');
 ```
 
 ## 2.2. Classification
+
+### 2.2.1. Logistic Regression
+
+```Python
+from sklearn.linear_model import LogisticRegression
+clf_lr = LogisticRegression()
+clf_lr.fit(X_train, y_train)
+y_pred = clf_lr.predict(X_test)
+y_pred_prob = clf_lr.predict_proba(X_test) # probability values
+```
+
+### 2.2.2. K Nearest Neighbors (KNN)
+
+Main parameters:
+
+- *n_neighbors*: number of neighbors k
+
+```Python
+from sklearn.neighbors import KNeighborsClassifier
+clf_kn = KNeighborsClassifier(n_neighbors=k)
+clf_kn.fit(X_train, y_train)
+y_pred = clf_kn.predict(X_test)
+y_pred_prob = clf_kn.predict_proba(X_test) # probability values
+```
+
+### 2.2.3. Support Vector Machines (SVM)
+
+Main parameters:
+
+C: sum of error margins
+kernel: linear, rbf(gamma=inverse of radius), poly(degree)
+
+```Python
+from sklearn.svm import SVC
+clf_svm = SVC(kernel='linear', C=10)
+clf_svm.fit(X_train, y_train)
+y_pred = clf_svm.predict(X_test)
+y_pred_prob = clf_svm.predict_proba(X_test) # probability values
+```
+
+### 2.2.4. Decision Tree Classifier
+
+Main parameters:
+
+- *criterion*: Gini, entropy... (Gini by default)
+- *max_depth*: number of splits
+- *min_samples_leaf*: minimum number of observations per leaf. 
+- *min_samples_split*: minimum number of observatons per leaf to subdivide. (Value 2 by default, be careful with overfitting.)
+
+```Python
+from sklearn.tree import DecisionTreeClassifier
+clf_dt = DecisionTreeClassifier(criterion='entropy', min_samples_split=i, min_samples_leaf=j, random_state=99)
+clf_dt.fit(X_train, y_train)
+y_pred = clf_dt.predict(X_test)
+y_pred_prob = clf_dt.predict_proba(X_test) # probability values
+```
 
 # 3. Unsupervised Learning Algorithms
 
