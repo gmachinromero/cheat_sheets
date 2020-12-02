@@ -72,6 +72,7 @@ plt.plot(x_hip, y_hip, c='red');
 Main parameters:
 
 - *n_neighbors*: number of neighbors k
+- *weight*: 'uniform', 'distance'
 
 ```Python
 from sklearn.neighbors import KNeighborsRegressor
@@ -124,6 +125,7 @@ y_pred_prob = clf_lr.predict_proba(X_test) # probability values
 Main parameters:
 
 - *n_neighbors*: number of neighbors k
+- *weight*: 'uniform', 'distance'
 
 ```Python
 from sklearn.neighbors import KNeighborsClassifier
@@ -172,8 +174,8 @@ y_pred_prob = clf_dt.predict_proba(X_test) # probability values
 ## 4.1. Regression metrics
 
 - MAE is the easiest to understand, because it's the average error.
-- MSE is more popular than MAE, because MSE "punishes" larger errors.
-- RMSE is more popular than MSE, RMSE is interpretable in the "y" units.
+- MSE is more popular than MAE, because MSE punishes larger errors.
+- RMSE is more popular than MSE, RMSE is interpretable in the y (dependant variable) units.
 
 **MAE - Mean Absolute Error**
 
@@ -204,11 +206,114 @@ from sklearn.metrics import mean_squared_error
 np.sqrt(mean_squared_error(y_test,y_pred))
 ```
 
-**$R^2$ Score**
+**R2 Score**
 
 ```Python
 from sklearn.metrics import r2_score
 r2_score(y_test,y_pred)
+```
+
+**Correlation (between predictions and real value):**
+
+```Python
+# Direct Calculation
+np.corrcoef(reg.predict(X_test),y_test)[0][1]
+# Custom scorer
+from sklearn.metrics import make_scorer
+def corr(pred,y_test):
+    return np.corrcoef(pred, y_test)[0][1]
+# Put the scorer in cross_val_score
+cross_val_score(reg, X, y, cv=5, scoring=make_scorer(corr))
+```
+
+**Bias (average of errors):**
+
+```Python
+# Direct Calculation
+np.mean(reg.predict(X_test)-y_test)
+# Custom Scorer
+from sklearn.metrics import make_scorer
+def bias(pred, y_test):
+    return np.mean(pred-y_test)
+# Put the scorer in cross_val_score
+cross_val_score(reg, X, y, cv=5, scoring=make_scorer(bias))
+```
+
+## 4.2. Classification metrics
+
+**Accuracy:**
+
+% of correct predictions
+
+```Python
+from sklearn import metrics 
+metrics.accuracy_score(y_test, y_pred)
+```
+
+**Classification Report:**
+
+Precision, Recall, F1 and Support
+
+```Python
+from sklearn import metrics 
+print(metrics.classification_report(y_test, y_pred))
+```
+
+**Confusion Matrix:**
+
+```Python
+from sklearn import metrics
+metrics.confusion_matrix(y_test, y_pred) 
+```
+
+```Python
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+ax = sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt="d",cmap="YlGnBu")
+ax.set(xlabel='Predicted Values', ylabel='Actual Values', title='Confusion Matrix');
+```
+
+**Sensitivity (True Positive Rate or Recall):**
+
+```Python
+from sklearn import metrics
+metrics.recall_score(y_test, y_pred)
+```
+
+**Specificity (True Negative Rate in 0/1 code):**
+
+metrics.classification_report recall for 0
+
+```Python
+from sklearn import metrics
+metrics.classification_report(y_test, y_pred)
+```
+
+**Precision:**
+
+precision predicting positive instances
+
+```Python
+from sklearn import metrics
+metrics.precision_score(y_test, y_pred)
+```
+
+**ROC curve:**
+
+```Python
+from sklearn.metrics import roc_curve
+# We chose the target
+target_pos = 1 # Or 0 for the other class
+fp,tp,_ = roc_curve(y_test, y_pred_prob[:, target_pos])
+plt.plot(fp, tp)
+```
+
+**AUC - Area under ROC curve:**
+
+```Python
+from sklearn.metrics import roc_curve, auc
+fp,tp,_ = roc_curve(y_test, y_pred_prob[:,1])
+auc(fp, tp)
 ```
 
 5. Saving an Delivering a Model
