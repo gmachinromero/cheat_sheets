@@ -27,9 +27,65 @@ clf_kn = KNeighborsClassifier(n_neighbors=5)
 cross_val_score(clf_kn, X, y, cv=5, scoring='accuracy').mean()
 ```
 
-## 1.3. GridSearchCV
+## 1.3. Tuning - GridSearchCV
+
+```Python
+# Load model_selection
+from sklearn.model_selection import GridSearchCV
+
+# Create an instance of GridSearchCV
+grid = GridSearchCV(
+    KNeighborsRegressor(),
+    param_grid={"n_neighbors":np.arange(1,25),
+                "weights":['uniform','distance']},
+    scoring='accuracy',
+    n_jobs=-1 # All CPUs working
+    verbose= True)
+
+# Fit will test all of the combinations
+grid.fit(X,y)
+
+# Best estimator and best parameters
+grid.best_score_
+grid.best_estimator_ # Best Trained Model
+grid.best_params_
+pd.DataFrame(grid.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
+
+# Predictions
+best_model = grid.best_estimator_
+best_model.predict(...)
+```
 
 ## 1.4. RandomizedSearchCV
+
+Random GridSearchCV: faster and quite accurate
+
+In contrast to GridSearchCV, not all parameter values are tried out, but rather a fixed number of parameter settings is sampled from the specified distributions. The number of parameter settings that are tried is given by *n_iter*.
+
+```Python
+# Load model_selection
+from sklearn.model_selection import RandomizedSearchCV
+
+# Create an instance of RandomizedSearchCV
+rand = RandomizedSearchCV(
+    DecisionTreeRegressor(),
+    param_distributions={'max_depth':range(1,10),'min_samples_leaf':range(1,50)},
+    cv=6,
+    scoring='neg_mean_absolute_error',
+    n_iter=10,
+    n_jobs=-1,
+    scoring='accuracy',
+    random_state= 5,
+    verbose= True)
+
+# Fit will test all of the combinations
+rand.fit(X,y)
+# Best estimator and best parameters
+rand.best_estimator_
+rand.best_params_
+rand.best_score_
+pd.DataFrame(rand.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
+```
 
 # 2. Supervised Learning Algorithms
 
@@ -167,7 +223,7 @@ y_pred = clf_dt.predict(X_test)
 y_pred_prob = clf_dt.predict_proba(X_test) # probability values
 ```
 
-# 3. Unsupervised Learning Algorithms
+# 3. Unsupervised Learning Algorithms??
 
 # 4. Metrics
 
@@ -217,10 +273,10 @@ r2_score(y_test,y_pred)
 
 ```Python
 # Direct Calculation
-np.corrcoef(reg.predict(X_test),y_test)[0][1]
+np.corrcoef(reg.predict(X_test), y_test)[0][1]
 # Custom scorer
 from sklearn.metrics import make_scorer
-def corr(pred,y_test):
+def corr(pred, y_test):
     return np.corrcoef(pred, y_test)[0][1]
 # Put the scorer in cross_val_score
 cross_val_score(reg, X, y, cv=5, scoring=make_scorer(corr))
@@ -243,7 +299,7 @@ cross_val_score(reg, X, y, cv=5, scoring=make_scorer(bias))
 
 **Accuracy:**
 
-% of correct predictions
+% of correct predictions (tp + tf)
 
 ```Python
 from sklearn import metrics 
@@ -298,6 +354,13 @@ from sklearn import metrics
 metrics.precision_score(y_test, y_pred)
 ```
 
+**Recall:**
+
+```Python
+from sklearn import metrics
+metrics.recall_score(y_test, y_pred)
+```
+
 **ROC curve:**
 
 ```Python
@@ -316,7 +379,7 @@ fp,tp,_ = roc_curve(y_test, y_pred_prob[:,1])
 auc(fp, tp)
 ```
 
-5. Saving an Delivering a Model
+# 5. Saving an Delivering a Model
 
 ```Python
 import pickle
