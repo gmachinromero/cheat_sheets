@@ -5,3 +5,4 @@ Snippets of code to reuse and save time.
 ## Topics:
 
 - Machine Learning with python
+- Tweepy
