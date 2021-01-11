@@ -89,7 +89,7 @@ data = pd.DataFrame(
 ```
 
 ```Python
-# Tweet extractor (no limits)
+# Tweet extractor (limit: 3.200 tweets)
 # ------------------------------------------------------------------------------
 # Introduce the target Twitter account and number of items to download
 target = 'lexfridman'
@@ -103,3 +103,21 @@ tweets = tweepy.Cursor(
 ```
 
 ### 3.4. Search Twitter for tweets
+
+```Python
+# Tweets searcher
+# ------------------------------------------------------------------------------
+# Introduce key words
+key_words = "climate+change -filter:retweets"
+
+# Tweets list (iterator)
+tweets = tw.Cursor(
+    api.search,
+    q=key_words,
+    lang="en",
+    since='2018-04-23').items(1000)
+
+# First 5 tweets
+all_tweets = [tweet.text for tweet in tweets]
+all_tweets[:5]
+```
