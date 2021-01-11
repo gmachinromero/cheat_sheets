@@ -9,12 +9,11 @@ conda install -c conda-forge tweepy
 
 ## 2. Set up API
 
-It is a good practice to store the keys in a file, for example, a .json. This avoid to include the keys in the main code, and therefore, in the repo.
+It is a good practice to store the keys in a file, for example, a .json. This avoid including the keys in the main code, and therefore, in the repo.
 
 ```Python
 # API Twitter credentials
 # ------------------------------------------------------------------------------
-
 # Open .json file containing credentials/tokens as a dictionary
 with open("twitter_api_keys.json") as file:
     api_credentials = json.load(file)
@@ -29,7 +28,6 @@ access_token_secret = api_credentials['access_token_secret']
 ```Python
 # API set up
 # ------------------------------------------------------------------------------
-
 # Create an auth instance with key and secret consumer, and pass the tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -74,14 +72,13 @@ data = tweepy.Cursor(api.followers, screen_name=target).items(n_items)
 ### 3.3. Download tweets from a twitter account
 
 ```Python
-# Tweets extractor (limited)
+# Tweets extractor (limit: 200 tweets)
 # ------------------------------------------------------------------------------
-
 # Introduce the target Twitter account and number of items to download
 target = 'lexfridman'
-n_items = 200               # limited to 200 tweets
+n_items = 200
 
-# Tweets list
+# Tweets list (iterator)
 tweets = api.user_timeline(screen_name=target, count=n_items)
 
 # Export the list of tweets to a dataframe
@@ -92,9 +89,8 @@ data = pd.DataFrame(
 ```
 
 ```Python
-# Tweet extractor
+# Tweet extractor (no limits)
 # ------------------------------------------------------------------------------
-
 # Introduce the target Twitter account and number of items to download
 target = 'lexfridman'
 n_items = 300
@@ -106,3 +102,4 @@ tweets = tweepy.Cursor(
     tweet_mode='extended').items(n_items)
 ```
 
+### 3.4. Search Twitter for tweets
