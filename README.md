@@ -7,3 +7,4 @@ Snippets of code to reuse and save time.
 - Machine Learning with python
 - Tweepy
 - Detoxify
+- SQL
