@@ -8,7 +8,7 @@ Generic query.
 ```mysql
 SELECT m.movies as 'movie_names',
        m.year
-FROM movies m
+FROM movies as m
 WHERE m.movies LIKE 'The %'
       AND year >= 1999
       AND imdb_rating IS NOT NULL
@@ -95,4 +95,50 @@ GROUP BY price
 HAVING COUNT(*) > 10;
 ```
 
-## 3. JOIN
+## 3. UNION
+
+```mysql
+SELECT *
+  FROM table1
+UNION
+SELECT *
+  FROM table2;
+```
+
+## 4. JOIN
+
+Types of JOIN:
+
+- INNER: only match between keys
+- LEFT:
+- CROSS JOIN: all rows of one table with all rows of another table
+
+```mysql
+SELECT t1.order_id,
+       t2.customer_name
+  FROM orders as t1
+    LEFT JOIN customers as t2
+           ON t1.customer_id = t2.customer_id
+ WHERE t2.customer_id IS NULL;
+```
+
+```mysql
+SELECT *
+  FROM left_table
+    INNER JOIN right_table
+            ON left_table.id = right_table.id
+    INNER JOIN another_table
+            ON left_table.id = another_table.id;
+```
+
+## 5. SUBQUERIES
+
+A subquery is usually added within the WHERE Clause of another SQL SELECT statement.
+
+```mysql
+SELECT ProductName
+  FROM Product 
+ WHERE Id IN (SELECT ProductId 
+                FROM OrderItem
+               WHERE Quantity > 100);
+```
