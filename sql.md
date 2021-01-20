@@ -3,7 +3,7 @@ ___
 
 ## 1. SELECT
 
-Generic query.
+Generic query:
 
 ```mysql
 SELECT m.movies as 'movie_names',
@@ -15,7 +15,7 @@ WHERE m.movies LIKE 'The %'
 ORDER BY year [ASC DESC]; # ASC by default
 ```
 
-Generic query.
+Generic query:
 
 ```mysql
 SELECT *
@@ -96,6 +96,18 @@ HAVING COUNT(*) > 10;
 ```
 
 ## 3. UNION
+
+UNION ALL does not analyze if exists any duplicates between tables.
+
+```mysql
+SELECT *
+  FROM table1
+UNION ALL
+SELECT *
+  FROM table2;
+```
+
+UNION eliminates duplicates once the UNION has been done.
 
 ```mysql
 SELECT *
