@@ -154,3 +154,7 @@ SELECT ProductName
                 FROM OrderItem
                WHERE Quantity > 100);
 ```
+
+### 6. Query-optimization advices
+
+- https://gabrielmorrissa.blogspot.com/2017/02/buenas-practicas-para-elaborar.html
