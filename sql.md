@@ -1,7 +1,7 @@
 # SQL: Structured Query Language
 ___
 
-## 1. SELECT
+## 1. Select
 
 Generic query:
 
@@ -57,7 +57,7 @@ FROM movies;
 - _: Represents a single character --> 'Se_en': Seven, Se7en
 - []: Represents any single character within the brackets --> 'h[ao]t': hat, hot 
 
-## 2. GROUP BY
+## 2. Group by
 
 ```mysql
 SELECT genre, COUNT(*)
@@ -95,7 +95,7 @@ GROUP BY price
 HAVING COUNT(*) > 10;
 ```
 
-## 3. UNION
+## 3. Union
 
 UNION ALL does not analyze if exists any duplicates between tables.
 
@@ -117,7 +117,7 @@ SELECT *
   FROM table2;
 ```
 
-## 4. JOIN
+## 4. Join
 
 Types of JOIN:
 
@@ -143,7 +143,7 @@ SELECT *
             ON left_table.id = another_table.id;
 ```
 
-## 5. SUBQUERIES
+## 5. Subqueries
 
 A subquery is usually added within the WHERE Clause of another SQL SELECT statement.
 
