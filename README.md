@@ -8,4 +8,5 @@ Snippets of code to reuse and save time.
 - Detoxify (hate detection speech)
 - Machine Learning with python
 - SQL
+- Streamlit
 - Tweepy
