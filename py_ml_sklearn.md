@@ -27,6 +27,14 @@ clf_kn = KNeighborsClassifier(n_neighbors=5)
 cross_val_score(clf_kn, X, y, cv=5, scoring='accuracy').mean()
 ```
 
+With more than one metric:
+
+```Python
+from sklearn.linear_model import LogisticRegression
+clf_lr = LogisticRegression()
+cross_validate(clf_lr, X, y, cv=5, scoring=('accuracy','f1'))
+```
+
 ## 1.3. Tuning - GridSearchCV
 
 ```Python
