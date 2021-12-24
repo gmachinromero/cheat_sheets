@@ -30,7 +30,7 @@ cross_val_score(clf_kn, X, y, cv=5, scoring='accuracy').mean()
 With more than one metric:
 
 ```Python
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import cross_validate
 clf_lr = LogisticRegression()
 cross_validate(clf_lr, X, y, cv=5, scoring=('accuracy','f1'))
 ```
