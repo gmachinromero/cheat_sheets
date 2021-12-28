@@ -1,9 +1,28 @@
 # Machine Learning with Python
 ___
 
-# 1. Training and testing split, cross validation and hiper-parameter tuning
+# 1. Featuring engineering
 
-## 1.1. Training and Testing Data
+## 1.1. One-hot encoding
+
+Necessary to apply in categorial variables
+
+```Python
+df_ohe = pd.get_dummies(
+    df,
+    prefix_sep = '_',
+    columns = ['Colum1','Column2','Column3'],
+    drop_first = True
+)
+```
+
+## 1.2. Scaling
+
+Complete...
+
+# 2. Training and testing split, cross validation and hiper-parameter tuning
+
+## 2.1. Training and Testing Data
 
 ```Python
 # Data preparation
@@ -14,7 +33,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=0)
 ```
 
-## 1.2. Cross validation
+## 2.2. Cross validation
 
 Main parameters:
 
@@ -27,7 +46,7 @@ clf_kn = KNeighborsClassifier(n_neighbors=5)
 cross_val_score(clf_kn, X, y, cv=5, scoring='accuracy').mean()
 ```
 
-## 1.3. Tuning - GridSearchCV
+## 2.3. Tuning - GridSearchCV
 
 ```Python
 # Load model_selection
@@ -56,7 +75,7 @@ best_model = grid.best_estimator_
 best_model.predict(...)
 ```
 
-## 1.4. RandomizedSearchCV
+## 2.4. RandomizedSearchCV
 
 Random GridSearchCV: faster and quite accurate
 
@@ -87,11 +106,11 @@ rand.best_score_
 pd.DataFrame(rand.cv_results_)[['mean_test_score', 'std_test_score', 'params']]
 ```
 
-# 2. Supervised Learning Algorithms
+# 3. Supervised Learning Algorithms
 
-## 2.1. Regression
+## 3.1. Regression
 
-### 2.1.1. Linear Regression - statsmodel
+### 3.1.1. Linear Regression - statsmodel
 
 ```Python
 # Load the library
@@ -102,7 +121,7 @@ lm.summary()
 sales_pred = lm.predict(testing)
 ```
 
-### 2.1.2. Linear Regression - scikitlearn
+### 3.1.2. Linear Regression - scikitlearn
 
 ```Python
 # Load the library
@@ -123,7 +142,7 @@ plt.scatter(X, y, c='lightgreen', alpha=0.2)
 plt.plot(x_hip, y_hip, c='red');
 ```
 
-### 2.1.3. K Nearest Neighbors (KNN)
+### 3.1.3. K Nearest Neighbors (KNN)
 
 Main parameters:
 
@@ -143,7 +162,7 @@ plt.scatter(X, y, c='lightgreen', alpha=0.2)
 plt.plot(x_hip, y_hip, c='red');
 ```
 
-### 2.1.4. Decision Trees
+### 3.1.4. Decision Trees
 
 Main parameters:
 
@@ -164,9 +183,9 @@ plt.scatter(X, y, c='lightgreen', alpha=0.2)
 plt.plot(x_hip, y_hip, c='red');
 ```
 
-## 2.2. Classification
+## 4.2. Classification
 
-### 2.2.1. Logistic Regression
+### 4.2.1. Logistic Regression
 
 ```Python
 from sklearn.linear_model import LogisticRegression
@@ -176,7 +195,7 @@ y_pred = clf_lr.predict(X_test)
 y_pred_prob = clf_lr.predict_proba(X_test) # probability values
 ```
 
-### 2.2.2. K Nearest Neighbors (KNN)
+### 4.2.2. K Nearest Neighbors (KNN)
 
 Main parameters:
 
@@ -191,7 +210,7 @@ y_pred = clf_kn.predict(X_test)
 y_pred_prob = clf_kn.predict_proba(X_test) # probability values
 ```
 
-### 2.2.3. Support Vector Machines (SVM)
+### 4.2.3. Support Vector Machines (SVM)
 
 Main parameters:
 
@@ -206,7 +225,7 @@ y_pred = clf_svm.predict(X_test)
 y_pred_prob = clf_svm.predict_proba(X_test) # probability values
 ```
 
-### 2.2.4. Decision Tree Classifier
+### 4.2.4. Decision Tree Classifier
 
 Main parameters:
 
@@ -223,11 +242,11 @@ y_pred = clf_dt.predict(X_test)
 y_pred_prob = clf_dt.predict_proba(X_test) # probability values
 ```
 
-# 3. Unsupervised Learning Algorithms??
+# 5. Unsupervised Learning Algorithms??
 
-# 4. Metrics
+# 6. Metrics
 
-## 4.1. Regression metrics
+## 6.1. Regression metrics
 
 - MAE is the easiest to understand, because it's the average error.
 - MSE is more popular than MAE, because MSE punishes larger errors.
@@ -295,7 +314,7 @@ def bias(pred, y_test):
 cross_val_score(reg, X, y, cv=5, scoring=make_scorer(bias))
 ```
 
-## 4.2. Classification metrics
+## 6.2. Classification metrics
 
 **Accuracy:**
 
@@ -379,7 +398,7 @@ fp,tp,_ = roc_curve(y_test, y_pred_prob[:,1])
 auc(fp, tp)
 ```
 
-# 5. Saving an Delivering a Model
+# 7. Saving an Delivering a Model
 
 ```Python
 import pickle
