@@ -128,7 +128,7 @@ FROM table2;
 Types of JOIN:
 
 - INNER: only match between keys
-- LEFT:
+- LEFT: all rows from left join with all the matching rows from the righ table
 - CROSS JOIN: all rows of one table with all rows of another table
 
 ```mysql
