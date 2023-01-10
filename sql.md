@@ -148,7 +148,7 @@ INNER JOIN another_table ON left_table.id = another_table.id;
 
 ## 5. Subqueries
 
-A subquery is usually added within the WHERE Clause of another SQL SELECT statement.
+A subquery is usually added within the WHERE clause of another SQL SELECT statement.
 
 ```mysql
 SELECT ProductName
