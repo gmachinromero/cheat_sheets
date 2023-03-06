@@ -6,8 +6,9 @@ ___
 Generic query:
 
 ```mysql
-SELECT m.movies as 'movie_names',
-       m.year
+SELECT
+    m.movies as 'movie_names',
+    m.year
 FROM movies as m
 WHERE m.movies LIKE 'The %'
   AND year >= 1999
@@ -132,8 +133,9 @@ Types of JOIN:
 - CROSS JOIN: all rows of one table with all rows of another table
 
 ```mysql
-SELECT t1.order_id,
-       t2.customer_name
+SELECT
+    t1.order_id,
+    t2.customer_name
 FROM orders as t1
 LEFT JOIN customers as t2 ON t1.customer_id = t2.customer_id
 WHERE t2.customer_id IS NULL;
