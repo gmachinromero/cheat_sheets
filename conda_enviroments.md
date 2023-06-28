@@ -72,7 +72,7 @@ From the base environment, list kernels:
 jupyter kernelspec list
 ```
 
-Add kernels:
+Create a kernel linked to with an environment:
 ```
 conda activate <env>
 conda install ipykernel
