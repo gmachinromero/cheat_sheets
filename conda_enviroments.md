@@ -8,6 +8,11 @@ Create a clean enviroment ready for Python 3 or later.
 conda create --name <env> python=3
 ```
 
+Create an enviroment using a environment.yml conda file.
+```
+conda env create -f environment.yml
+```
+
 Create an enviroment using a requirements.txt conda file.
 ```
 conda create --name <env> --file requirements.txt
@@ -60,8 +65,32 @@ Delete an enviroment
 conda remove --name <env> --all
 ```
 
-## 4. Generate requirements.txt files
+## 4. Environments in Jupyter
+
+From the base environment, list kernels:
+```
+jupyter kernelspec list
+```
+
+Add kernels:
+```
+conda activate <env>
+conda install ipykernel
+ipython kernel install --user --name=<your_kernal_name>
+conda deactivate
+```
+
+Delete kernel:
+```
+jupyter kernelspec uninstall <your_kernal_name>
+```
+
+
+## 5. Generate requirements.txt files
 ```
 conda list -e > requirements_conda.txt
 pip list --format=freeze > requirements_pip.txt
+```
+```
+conda env export --no-builds > env_neural_prophet.yml
 ```
