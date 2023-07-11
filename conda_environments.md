@@ -76,13 +76,18 @@ Create a kernel linked to with an environment:
 ```
 conda activate <env>
 conda install ipykernel
-ipython kernel install --user --name=<your_kernal_name>
+ipython kernel install --user --name=<your_kernel_name>
 conda deactivate
+```
+
+List all kernels:
+```
+jupyter kernelspec list
 ```
 
 Delete kernel:
 ```
-jupyter kernelspec uninstall <your_kernal_name>
+jupyter kernelspec uninstall <your_kernel_name>
 ```
 
 
