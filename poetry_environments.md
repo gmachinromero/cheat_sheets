@@ -26,7 +26,7 @@ poetry init
 
 Add dependencies to project:
 ```
-poetry add session-info pandas jupyter ipykernel ... ...
+poetry add session-info pandas jupyter ipykernel <library_1> <library_1> ... <library_n>
 poetry add numpy==1.24
 ```
 
