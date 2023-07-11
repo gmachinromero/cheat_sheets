@@ -60,6 +60,11 @@ conda update <library>
 conda update --all
 ```
 
+Rename an enviroment
+```
+conda rename -n old_name  new_name
+```
+
 Delete an enviroment
 ```
 conda remove --name <env> --all
