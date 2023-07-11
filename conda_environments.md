@@ -62,7 +62,7 @@ conda update --all
 
 Rename an enviroment
 ```
-conda rename -n old_name  new_name
+conda rename -n <old_name> <new_name>
 ```
 
 Delete an enviroment
