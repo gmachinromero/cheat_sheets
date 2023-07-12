@@ -24,16 +24,20 @@ cd <your_project>
 poetry init
 ```
 
-Add dependencies to project:
+Add dependencies to project in a generic way:
 ```
 poetry add session-info pandas jupyter ipykernel <library_1> <library_1> ... <library_n>
+```
+
+Or specify the exact version of a package:
+```
 poetry add numpy==1.24
 ```
 
 
 ## 3. Manage Poetry environments
 
-If a project is started without any environment activated, Poetry creates it in
+If a project is started without any Poetry environment activated, Poetry creates it in
 the following path: `/home/user/.cache/pypoetry/virtualenvs/`. To manange poetry
 envs:
 ```
@@ -72,7 +76,7 @@ Create a kernel linked to the environment:
 poetry run ipython kernel install --user --name=<KERNEL_NAME>
 ```
 
-Open Jupyter Lab from the poetry shell
+Open Jupyter Lab from another shell:
 ```
 jupyter lab
 ```
