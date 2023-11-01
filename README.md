@@ -4,7 +4,8 @@ Snippets of code to reuse and save time.
 
 ## Topics:
 
-- Conda enviroments
+- Conda environments
+- Poetry environments
 - Detoxify (hate detection speech)
 - Machine Learning with python
 - SQL
