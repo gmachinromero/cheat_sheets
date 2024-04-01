@@ -9,7 +9,16 @@ Install Poetry:
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
+By default, Poetry is installed into a platform and user-specific directory:
+
+- ~/.local/share/pypoetry on Linux/Unix.
+
 Add Poetry to your PATH:
+
+The installer creates a poetry wrapper in a well-known, platform-specific directory:
+
+$HOME/.local/bin on Unix.
+
 ```
 echo $PATH
 export PATH="/home/<tu_usuario>/.local/bin:$PATH"
@@ -32,6 +41,14 @@ poetry add session-info pandas jupyter ipykernel <library_1> <library_1> ... <li
 Or specify the exact version of a package:
 ```
 poetry add numpy==1.24
+```
+
+By default, Poetry will try to use the Python version used during Poetry’s installation to create the virtual environment for the current project.
+
+However, for various reasons, this Python version might not be compatible with the python range supported by the project. In this case, Poetry will try to find one that is and use it. If it’s unable to do so then you will be prompted to activate one explicitly. For this specific purpose, you can use the env use command to tell Poetry which Python version to use for the current project.
+
+```
+poetry env use /full/path/to/python
 ```
 
 Dependencies for a project can be specified in various forms, which depend on the type of the dependency and on the optional constraints that might be needed for it to be installed.
