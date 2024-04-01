@@ -17,7 +17,7 @@ Add Poetry to your PATH:
 
 The installer creates a poetry wrapper in a well-known, platform-specific directory:
 
-$HOME/.local/bin on Unix.
+- $HOME/.local/bin on Unix.
 
 ```
 echo $PATH
