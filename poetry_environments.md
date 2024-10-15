@@ -51,9 +51,14 @@ pyenv local 3.X.X
 poetry init
 ```
 
+You can check the python version in your project with:
+```
+echo $(pyenv which python)
+```
+
 Configure Poetry to use Pyenv Python version:
 ```
-poetry env use $(pyenv which python)
+poetry env use 3.X.X
 ```
 
 Add dependencies to project in a generic way. The add command adds required packages to your pyproject.toml and installs them. If you do not specify a version constraint, poetry will choose a suitable one based on the available package versions.
