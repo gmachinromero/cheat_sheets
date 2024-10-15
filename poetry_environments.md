@@ -58,7 +58,7 @@ poetry init
 Configure Poetry to use Pyenv Python version:
 ```bash
 poetry env use $(pyenv which python)
-```bash
+```
 
 Add dependencies to project in a generic way. The add command adds required packages to your pyproject.toml and installs them. If you do not specify a version constraint, poetry will choose a suitable one based on the available package versions.
 ```bash
