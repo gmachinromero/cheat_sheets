@@ -22,14 +22,16 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 By default, Poetry is installed into a platform and user-specific directory:
-
-- ~/.local/share/pypoetry on Linux/Unix.
+```
+~/.local/share/pypoetry on Linux/Unix.
+```
 
 Add Poetry to your PATH:
 
 The installer creates a poetry wrapper in a well-known, platform-specific directory:
-
-- $HOME/.local/bin on Unix.
+```
+$HOME/.local/bin on Unix.
+```
 
 ```bash
 echo $PATH
@@ -84,9 +86,12 @@ https://python-poetry.org/docs/dependency-specification/#using-the--operator
 
 ## 3. Manage Poetry environments
 
-If a project is started without any Poetry environment activated, Poetry creates it in
-the following path: `/home/user/.cache/pypoetry/virtualenvs/`. To manange poetry
-envs you can:
+If a project is started without any Poetry environment activated, Poetry creates it in the following path: 
+```
+/home/user/.cache/pypoetry/virtualenvs/
+```
+
+To manange poetry envs you can:
 
 Show info of the current environment:
 ```bash
