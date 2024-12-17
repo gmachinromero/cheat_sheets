@@ -39,6 +39,9 @@ Install desired Python version for the project with Pyenv:
 pyenv install 3.X.X
 ```
 
+Installed python version is often stored in `~/.pyenv/versions/3.10.15/bin/python`.
+
+
 Init a project with Poetry. This command will help you create a pyproject.toml file interactively by prompting you to provide basic information about your package. It will interactively ask you to fill in the fields, while using some smart defaults.
 ```
 mkdir <your_project>
